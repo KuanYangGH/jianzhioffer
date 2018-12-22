@@ -31,7 +31,6 @@ public class Solution {
             String newStr = swap(str,beginIndex,i);
             //strings.add(newStr);
             strings.addAll(recursive(newStr,beginIndex+1));
-            newStr = swap(str,beginIndex,i);
         }
         return strings;
     }
