@@ -1,4 +1,4 @@
-package com.second;
+package com.second.interviewquestion33;
 
 /**
  * 面试题33：把数组排成最小的数
