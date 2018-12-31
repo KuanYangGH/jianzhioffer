@@ -102,7 +102,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        new Solution().PrintProbabilityFirstMethod(2);
-        new Solution().PrintProbabilitySecondMethod(2);
+        new Solution().PrintProbabilityFirstMethod(3);
+        new Solution().PrintProbabilitySecondMethod(3);
     }
 }
