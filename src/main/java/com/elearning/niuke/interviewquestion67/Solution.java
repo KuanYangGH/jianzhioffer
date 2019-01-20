@@ -45,6 +45,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().movingCount(1,2,3));
+        System.out.println(new Solution().movingCount(15,20,20));
     }
 }

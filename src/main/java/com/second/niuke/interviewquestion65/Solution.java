@@ -21,14 +21,10 @@ public class Solution {
         }
         LinkedList<Integer> queue = new LinkedList<>();
         for (int i = 0; i < num.length; i++) {
-            if (queue.isEmpty()) {
-                queue.add(i);
-            } else {
-                while (!queue.isEmpty() && num[queue.getLast()] < num[i]) {
-                    queue.removeLast();
-                }
-                queue.add(i);
+            while (!queue.isEmpty() && num[queue.getLast()] < num[i]) {
+                queue.removeLast();
             }
+            queue.add(i);
             while ((queue.getLast() - queue.getFirst() + 1) > size) {
                 queue.removeFirst();
             }
