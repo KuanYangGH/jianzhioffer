@@ -1,6 +1,8 @@
 package com.elearning;
 
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.LinkedTransferQueue;
 
 public class Main {
 
