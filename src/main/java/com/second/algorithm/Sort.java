@@ -71,27 +71,56 @@ public class Sort {
         while (i <= mid && j <= end) {
             if (nums[i] < nums[j]) {
                 tmp[k++] = nums[i++];
-            }
-            else {
+            } else {
                 tmp[k++] = nums[j++];
             }
         }
-        while (i<=mid){
+        while (i <= mid) {
             tmp[k++] = nums[i++];
         }
-        while (j<=end){
+        while (j <= end) {
             tmp[k++] = nums[j++];
         }
-        for(int n=start;n<=end;n++){
-            nums[n]=tmp[n-start];
+        for (int n = start; n <= end; n++) {
+            nums[n] = tmp[n - start];
+        }
+    }
+
+    /**
+     * 堆排序
+     * @param nums
+     */
+    public void heapSort(int[] nums) {
+        if (nums == null || nums.length == 0) return;
+        buildMaxHeap(nums);
+        for (int i = 0; i < nums.length - 1; i++) {
+            swap(nums, 0, nums.length - 1 - i);
+            maxHeapify(nums, 0, nums.length - 2 - i);
+        }
+    }
+
+    public void buildMaxHeap(int[] nums) {
+        for (int i = nums.length / 2 - 1; i >= 0; i--) {
+            maxHeapify(nums, i, nums.length - 1);
+        }
+    }
+
+    private void maxHeapify(int[] nums, int start, int end) {
+        int i = 2 * start + 1;
+        if (i <= end) {
+            if (i+1 <= end && nums[i] < nums[i + 1]) i++;
+            if (nums[i] > nums[start]) swap(nums, i, start);
+            maxHeapify(nums, i, end);
         }
     }
 
     public static void main(String[] args) {
         int[] nums = {3, 2, 1, 4, 3, 5, 2};
-        new Sort().quickSort(nums);
-        System.out.println(Arrays.toString(nums));
-        new Sort().mergeSort(nums);
+//        new Sort().quickSort(nums);
+//        System.out.println(Arrays.toString(nums));
+//        new Sort().mergeSort(nums);
+//        System.out.println(Arrays.toString(nums));
+        new Sort().heapSort(nums);
         System.out.println(Arrays.toString(nums));
     }
 }
