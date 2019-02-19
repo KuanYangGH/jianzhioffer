@@ -114,13 +114,67 @@ public class Sort {
         }
     }
 
+    /**
+     * 冒泡排序
+     * @param nums
+     */
+    public void bubbleSort(int[] nums){
+        if (nums == null || nums.length <= 1) return;
+        for(int i=0;i<nums.length;i++){
+            for(int j=0;j<nums.length-1-i;j++){
+                if(nums[j]>nums[j+1]){
+                    swap(nums,j,j+1);
+                }
+            }
+        }
+    }
+
+    /**
+     * 插入排序
+     * @param nums
+     */
+    public void insertSort(int[] nums){
+        if (nums == null || nums.length <= 1) return;
+        for(int i=1;i<nums.length;i++){
+            int tmp = nums[i];
+            for(int j=i-1;j>=0;j--){
+                if(tmp<nums[j]){
+                    swap(nums,j+1,j);
+                }
+            }
+        }
+    }
+
+    /**
+     * 选择排序
+     * @param nums
+     */
+    public void selectSort(int[] nums){
+        if (nums == null || nums.length <= 1) return;
+        for(int i=0;i<nums.length;i++){
+            int minIndex = i;
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[minIndex]>nums[j]){
+                    minIndex = j;
+                }
+            }
+            swap(nums,i,minIndex);
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = {3, 2, 1, 4, 3, 5, 2};
 //        new Sort().quickSort(nums);
 //        System.out.println(Arrays.toString(nums));
 //        new Sort().mergeSort(nums);
 //        System.out.println(Arrays.toString(nums));
-        new Sort().heapSort(nums);
+//        new Sort().heapSort(nums);
+//        System.out.println(Arrays.toString(nums));
+//        new Sort().bubbleSort(nums);
+//        System.out.println(Arrays.toString(nums));
+//        new Sort().insertSort(nums);
+//        System.out.println(Arrays.toString(nums));
+        new Sort().selectSort(nums);
         System.out.println(Arrays.toString(nums));
     }
 }
