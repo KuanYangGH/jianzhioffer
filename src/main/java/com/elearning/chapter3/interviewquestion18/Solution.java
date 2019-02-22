@@ -1,4 +1,4 @@
-package src.main.java.com.elearning.chapter3.interviewquestion18;
+package com.elearning.chapter3.interviewquestion18;
 
 /**
  * 面试题18：树的子结构
@@ -22,7 +22,7 @@ public class Solution {
         }
         return result;
     }
-    public boolean doesTree1HasTree2(TreeNode root1,TreeNode root2){
+    public boolean doesTree1HasTree2(TreeNode root1, TreeNode root2){
         if(root2==null){
             return true;
         }
