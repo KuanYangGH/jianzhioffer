@@ -1,4 +1,4 @@
-package src.main.java.com.elearning.chapter3.interviewquestion18;
+package com.elearning.chapter3.interviewquestion18;
 
 /**
  * 二叉树节点
