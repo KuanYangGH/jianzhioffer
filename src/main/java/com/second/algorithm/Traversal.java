@@ -64,17 +64,17 @@ public class Traversal {
     public void inorderTraversalNonRecursive(TreeNode head) {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode node = head;
-        while (node!=null){
+        while (node != null) {
             stack.push(node);
             node = node.left;
         }
 
-        while (!stack.empty()){
+        while (!stack.empty()) {
             TreeNode treeNode = stack.pop();
             visit(treeNode);
-            if(treeNode.right!=null){
+            if (treeNode.right != null) {
                 TreeNode rightNode = treeNode.right;
-                while (rightNode!=null){
+                while (rightNode != null) {
                     stack.push(rightNode);
                     rightNode = rightNode.left;
                 }
@@ -87,19 +87,68 @@ public class Traversal {
         TreeNode node = head;
         TreeNode pre = head;
         stack.push(node);
-        while (!stack.empty()){
+        while (!stack.empty()) {
             TreeNode treeNode = stack.peek();
             // 叶子节点、左右子树都被访问过（如果有右子树，那么前驱节点为右孩子；否则为左孩子）
-            if((treeNode.left==null&&treeNode.right==null)
-                    ||(treeNode.right!=null&&treeNode.right==pre)
-                    || treeNode.left==pre){
+            if ((treeNode.left == null && treeNode.right == null)
+                    || (treeNode.right != null && treeNode.right == pre)
+                    || treeNode.left == pre) {
                 stack.pop();
                 visit(treeNode);
                 pre = treeNode;
+            } else {
+                if (treeNode.right != null) stack.push(treeNode.right);
+                if (treeNode.left != null) stack.push(treeNode.left);
+            }
+        }
+    }
+
+    public void inorderMorrisTraversal(TreeNode root) {
+        TreeNode current = root, prev = null;
+
+        while (current != null) {
+            if (current.left == null) {
+                visit(current);
+                current = current.right;
+            } else {
+                prev = current.left;
+                while (prev.right != null && prev.right != current) {
+                    prev = prev.right;
+                }
+
+                if (prev.right == null) {
+                    prev.right = current;
+                    current = current.left;
+                } else {
+                    prev.right = null;
+                    visit(current);
+                    current = current.right;
+                }
+            }
+        }
+    }
+
+    public void preorderMorrisTraversal(TreeNode root) {
+        TreeNode current = root, prev = null;
+        while (current!=null){
+            if(current.left==null){
+                visit(current);
+                current = current.right;
             }
             else {
-                if(treeNode.right!=null) stack.push(treeNode.right);
-                if(treeNode.left!=null) stack.push(treeNode.left);
+                prev = current.left;
+                while (prev.right!=null&&prev.right!=current){
+                    prev = prev.right;
+                }
+                if(prev.right==null){
+                    prev.right = current;
+                    visit(current);
+                    current = current.left;
+                }
+                else {
+                    prev.right = null;
+                    current = current.right;
+                }
             }
         }
     }
@@ -112,12 +161,17 @@ public class Traversal {
         System.out.println();
         preorderTraversalNonRecursive(head);
         System.out.println();
+        preorderMorrisTraversal(head);
+        System.out.println();
+
 
         System.out.println("###############");
         System.out.println("中序遍历");
         inorderTraversalRecursive(head);
         System.out.println();
         inorderTraversalNonRecursive(head);
+        System.out.println();
+        inorderMorrisTraversal(head);
         System.out.println();
 
         System.out.println("###############");
